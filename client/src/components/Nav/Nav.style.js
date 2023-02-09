@@ -33,3 +33,8 @@ export const AvatarSection = {
   justifyContent: "space-around",
   flex: 1,
 };
+
+export const activeTab = {
+  fontWeight: "bold",
+  color: "#00ffe9"
+}

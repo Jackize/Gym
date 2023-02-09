@@ -2,27 +2,54 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { background, form, gridContainer, WelcomeMessage } from "./Login.style";
-import { FacebookRounded, Google} from '@mui/icons-material';
-import { GoogleAuthProvider, signInWithPopup, getAuth, FacebookAuthProvider} from 'firebase/auth'
+import { FacebookRounded, Google } from "@mui/icons-material";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  FacebookAuthProvider,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { AuthContext } from "../../context/AuthProvider";
 
 const GoogleProvider = new GoogleAuthProvider();
+GoogleProvider.setCustomParameters({
+  prompt: "select_account",
+});
 const FacebookProvider = new FacebookAuthProvider();
+FacebookProvider.addScope("email");
+FacebookProvider.addScope("public_profile");
 
 export default function Login() {
   const auth = getAuth();
-  const {user} = useContext(AuthContext)
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleLogin = async (provider) => {
-    const res = await signInWithPopup(auth, provider);
-    console.log("🚀 ~ file: index.jsx:13 ~ handleLoginWithGoogle ~ res", res);
-    
-  }
+    try {
+      const res = await signInWithPopup(auth, provider);
+      console.log("🚀 ~ file: index.jsx:13 ~ handleLoginWithGoogle ~ res", res);
+    } catch (error) {
+      if (error.code === "auth/account-exists-with-different-credential") {
+        const { email } = await fetchSignInMethodsForEmail(auth, error.email);
+        if (email.length) {
+          const existingUser = await signInWithEmailAndPassword(
+            auth,
+            email[0],
+            password
+          );
+          const credential = provider.credential(error.credential.accessToken);
+          await existingUser.linkWithCredential(credential);
+        }
+      } else {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <Box sx={background}>
-      <Box sx={form} >
+      <Box sx={form}>
         <Grid container spacing={3} sx={gridContainer}>
           <Grid item>
             <Typography sx={WelcomeMessage}>
@@ -30,7 +57,7 @@ export default function Login() {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="h5" fontWeight={500} color='darkred'>
+            <Typography variant="h5" fontWeight={500} color="darkred">
               Login to your account
             </Typography>
           </Grid>
@@ -54,14 +81,20 @@ export default function Login() {
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" color="error" onClick={()=>handleLogin(GoogleProvider)}>
-            <Google sx={{marginRight: 1}}/>
-                 Login with Google
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => handleLogin(GoogleProvider)}>
+              <Google sx={{ marginRight: 1 }} />
+              Login with Google
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" color="primary" onClick={()=>handleLogin(FacebookProvider)}>
-            <FacebookRounded sx={{marginRight: 1}}/>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleLogin(FacebookProvider)}>
+              <FacebookRounded sx={{ marginRight: 1 }} />
               Login with Facebook
             </Button>
           </Grid>
