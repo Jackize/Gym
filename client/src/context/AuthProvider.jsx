@@ -25,7 +25,6 @@ export default function AuthProvider({ children }) {
         return;
       }
 
-      console.log("reset");
       setIsLoading(false);
       setUser({});
       localStorage.clear();

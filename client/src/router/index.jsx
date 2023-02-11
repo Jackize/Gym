@@ -8,6 +8,10 @@ import Practice from "../pages/Practice";
 import Discover from "../pages/Discover";
 import Dashboard from "../pages/Dashboard";
 import Settings from "../pages/Settings";
+import Arm from "../pages/Practice/Arm";
+import Back from "../pages/Practice/Back";
+import Leg from "../pages/Practice/Leg";
+import Abs from "../pages/Practice/Abs";
 
 const AuthLayout = () => {
   return (
@@ -35,6 +39,22 @@ export default createBrowserRouter([
           {
             element: <Practice />,
             path: "/practice",
+          },
+          {
+            element: <Arm />,
+            path: "/practice/arm",
+          },
+          {
+            element: <Back />,
+            path: "/practice/back",
+          },
+          {
+            element: <Leg />,
+            path: "/practice/leg",
+          },
+          {
+            element: <Abs />,
+            path: "/practice/abs",
           },
           {
             element: <Settings />,

@@ -8,8 +8,9 @@ export default function ProtectedRoute({ children }) {
   }
 
   return (
-    <Nav>
+    <>
+      <Nav />
       <Outlet />
-    </Nav>
+    </>
   );
 }
