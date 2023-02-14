@@ -1,5 +1,3 @@
-import images from "../../../../assets/img";
-
 export const form = {
   width: "500px",
   alignItems: "center",
@@ -12,7 +10,6 @@ export const form = {
 };
 
 export const header = {
-  backgroundImage: `url(${images.arm})`,
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",

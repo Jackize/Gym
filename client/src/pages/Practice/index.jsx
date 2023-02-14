@@ -1,5 +1,5 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Grid, Paper } from "@mui/material";
+import React from "react";
 import images from "../../../assets/img";
 import TabPractice from "../../components/TabPractice";
 import { form } from "./Practice.style";

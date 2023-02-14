@@ -1,7 +1,13 @@
 import React from 'react'
+import images from '../../../../assets/img'
+import Header from '../../../components/Header'
 
 export default function Back() {
   return (
-    <div>Back</div>
+    <>
+      <Header title={'SHOULDER & BACK WORKOUT'} backgroundImage={images.back}>
+        
+        </Header>
+    </>
   )
 }

@@ -27,7 +27,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 
 const pages = [
-  ["Practice", "/practice"],
+  ["Practice", "/"],
   ["Discover", "/discover"],
   ["Dashboar", "/dashboard"],
 ];

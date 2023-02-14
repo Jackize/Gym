@@ -38,23 +38,23 @@ export default createBrowserRouter([
         children: [
           {
             element: <Practice />,
-            path: "/practice",
+            path: "/",
           },
           {
             element: <Arm />,
-            path: "/practice/arm",
+            path: "/arm",
           },
           {
             element: <Back />,
-            path: "/practice/back",
+            path: "/back",
           },
           {
             element: <Leg />,
-            path: "/practice/leg",
+            path: "/leg",
           },
           {
             element: <Abs />,
-            path: "/practice/abs",
+            path: "/abs",
           },
           {
             element: <Settings />,

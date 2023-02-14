@@ -1,7 +1,12 @@
 import React from 'react'
-
-export default function Abs() {
+import Header from '../../../components/Header';
+import images from '../../../../assets/img';
+export default function Abs({backgroundIamge}) {
   return (
-    <div>Abs</div>
+    <>
+      <Header title={'ABS WORKOUT'} backgroundImage={images.abs}>
+        
+      </Header>
+    </>
   )
 }
