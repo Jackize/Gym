@@ -6,7 +6,7 @@ export const form = {
   margin: "0 auto",
   flexDirection: "column",
   backgroundColor: "#0000004d",
-  height: "100vh",
+  padding: '20px 0'
 };
 
 export const header = {

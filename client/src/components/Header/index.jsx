@@ -40,15 +40,7 @@ export default function Header({children, title, backgroundImage}) {
         </Box>
         <Box sx={form}>
           <Grid container gap={2} justifyContent="center">
-            <Grid item xs={11}>
-              <Paper
-                elevation={6}
-                sx={{
-                  height: "50px",
-                  borderRadius: 3,
-                  overflow: "hidden",
-                }}>{children}</Paper>
-            </Grid>
+              {children}
           </Grid>
         </Box>
         {showScrollTop && <ScrollTopButton />}
